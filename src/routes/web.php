@@ -19,3 +19,14 @@ Livewire::setScriptRoute(function ($handle) {
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', function () {
+    return view('components.pages.home');
+});
+
+Route::get('/about', function () {
+    return view('components.pages.about');
+});
+
+Route::get('/herbal-info', function () {
+    return view('components.pages.herbal-info');
+});

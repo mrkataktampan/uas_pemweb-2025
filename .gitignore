@@ -1,3 +1,11 @@
 db/data/*
 */db/data/*
 ../db/data/*
+
+mariadb/
+mongo/
+postgres/
+redis/
+mysql/
+performance_schema/
+data/

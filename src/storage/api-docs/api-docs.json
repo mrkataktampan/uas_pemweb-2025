@@ -1,0 +1,454 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Herbal API Documentation",
+        "description": "Dokumentasi lengkap API Aplikasi Penyembuhan Herbal.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://uas_pemweb.test/",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/herbals": {
+            "get": {
+                "tags": [
+                    "Herbals"
+                ],
+                "summary": "Ambil semua data herbal",
+                "operationId": "b52091ff78905cb32b2ef54c4853a5f1",
+                "responses": {
+                    "200": {
+                        "description": "Daftar data herbal",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Herbal"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Herbals"
+                ],
+                "summary": "Tambah data herbal baru",
+                "operationId": "37f1acf29342e4dbf6821ee0beafbbba",
+                "requestBody": {
+                    "description": "Data herbal yang ingin ditambahkan",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Kunyit"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Bermanfaat untuk maag"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Data herbal berhasil ditambahkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Herbal"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/herbals/{id}": {
+            "get": {
+                "tags": [
+                    "Herbals"
+                ],
+                "summary": "Tampilkan detail herbal",
+                "operationId": "79e8e51fd417604bdaeddf349f2ee5fa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari herbal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data herbal ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Herbal"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Herbals"
+                ],
+                "summary": "Update data herbal",
+                "operationId": "e7e037910c3ac1d01e9e4f04189c11d8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID herbal yang akan diperbarui",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Jahe Merah"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Meningkatkan daya tahan tubuh"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Herbal"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Herbals"
+                ],
+                "summary": "Hapus data herbal",
+                "operationId": "bd4514d979336cc3a08b1a3552a8d09b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari herbal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Data berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/penyakits": {
+            "get": {
+                "tags": [
+                    "Penyakits"
+                ],
+                "summary": "Ambil semua data penyakit",
+                "description": "Get all penyakit",
+                "operationId": "c76a3aaca4794052107f56d9af7c4d86",
+                "responses": {
+                    "200": {
+                        "description": "Daftar data penyakit",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Penyakit"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Penyakits"
+                ],
+                "summary": "Tambah data penyakit baru",
+                "description": "Create new penyakit",
+                "operationId": "4feeea4734122427a6fe275383057dcc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Demam"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Suhu tubuh meningkat"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Penyakit berhasil ditambahkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Penyakit"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/penyakits/{id}": {
+            "get": {
+                "tags": [
+                    "Penyakits"
+                ],
+                "summary": "Tampilkan detail penyakit berdasarkan ID",
+                "description": "Get penyakit by ID",
+                "operationId": "0119f0978bbcabdc5a404639cec2a694",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID penyakit",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Penyakit"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Penyakits"
+                ],
+                "summary": "Perbarui data penyakit",
+                "description": "Update penyakit by ID",
+                "operationId": "f199bb6e59f878bd2b58741f6d01540e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID penyakit yang ingin diperbarui",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Flu Berat"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Flu dengan gejala berat"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Penyakit"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Penyakits"
+                ],
+                "summary": "Hapus data penyakit berdasarkan ID",
+                "description": "Delete penyakit",
+                "operationId": "d872963437b1af475172fec0643fc3ae",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID penyakit",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Herbal": {
+                "title": "Herbal",
+                "required": [
+                    "id",
+                    "nama",
+                    "manfaat"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nama": {
+                        "type": "string",
+                        "example": "Daun Kelor"
+                    },
+                    "manfaat": {
+                        "type": "string",
+                        "example": "Menurunkan tekanan darah"
+                    }
+                },
+                "type": "object"
+            },
+            "Penyakit": {
+                "title": "Penyakit",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Demam"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Suhu tubuh meningkat"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "description": "Masukkan API Key kamu dari .env (Authorization header).",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Herbals",
+            "description": "Manajemen Herbal"
+        },
+        {
+            "name": "Penyakits",
+            "description": "Manajemen data penyakit"
+        }
+    ],
+    "security": [
+        {
+            "api_key": []
+        }
+    ]
+}
